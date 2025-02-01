@@ -529,6 +529,8 @@ class SM64_ExportCollision(bpy.types.Operator):
                     context.scene.colIncludeChildren,
                 )
                 self.report({"INFO"}, "Success! Collision at " + context.scene.colInsertableBinaryPath)
+            elif context.scene.fast64.sm64.export_type == "O2R":
+                raise PluginError("[O2R] Collision Export - Not implemented for now.")
             else:
                 tempROM = tempName(context.scene.fast64.sm64.output_rom)
                 export_rom_checks(bpy.path.abspath(context.scene.fast64.sm64.export_rom))
@@ -610,6 +612,8 @@ class SM64_ExportCollisionPanel(SM64_Panel):
         col.prop(context.scene, "colIncludeChildren")
         if context.scene.fast64.sm64.export_type == "Insertable Binary":
             col.prop(context.scene, "colInsertableBinaryPath")
+        elif context.scene.fast64.sm64.export_type == "O2R":
+            raise PluginError("[O2R] Collision Panel Export - Not implemented for now.")
         else:
             prop_split(col, context.scene, "colStartAddr", "Start Address")
             prop_split(col, context.scene, "colEndAddr", "End Address")

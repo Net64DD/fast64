@@ -763,6 +763,8 @@ class SM64_ExportAnimMario(bpy.types.Operator):
                     context.scene.loopAnimation,
                 )
                 self.report({"INFO"}, "Success! Animation at " + context.scene.animInsertableBinaryPath)
+            elif context.scene.fast64.sm64.export_type == "O2R":
+                raise PluginError("[O2R] Anim Export - Not implemented for now.")
             else:
                 export_rom_checks(bpy.path.abspath(context.scene.fast64.sm64.export_rom))
                 tempROM = tempName(context.scene.fast64.sm64.output_rom)
@@ -899,6 +901,8 @@ class SM64_ExportAnimPanel(SM64_Panel):
         elif context.scene.fast64.sm64.export_type == "Insertable Binary":
             col.prop(context.scene, "isDMAExport")
             col.prop(context.scene, "animInsertableBinaryPath")
+        elif context.scene.fast64.sm64.export_type == "O2R":
+            raise PluginError("[O2R] Anim Panel Export - Not implemented for now.")
         else:
             col.prop(context.scene, "isDMAExport")
             if context.scene.isDMAExport:

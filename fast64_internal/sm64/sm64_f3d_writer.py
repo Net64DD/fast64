@@ -624,6 +624,8 @@ class SM64_ExportDL(bpy.types.Operator):
                     bpy.context.scene.DLincludeChildren,
                 )
                 self.report({"INFO"}, "Success! DL at " + context.scene.DLInsertableBinaryPath + ".")
+            elif context.scene.fast64.sm64.export_type == "O2R":
+                raise PluginError("[O2R] DList Export - Not implemented for now.")
             else:
                 export_rom_checks(bpy.path.abspath(context.scene.fast64.sm64.export_rom))
                 tempROM = tempName(context.scene.fast64.sm64.output_rom)
@@ -749,6 +751,8 @@ class SM64_ExportDLPanel(SM64_Panel):
 
         elif context.scene.fast64.sm64.export_type == "Insertable Binary":
             col.prop(context.scene, "DLInsertableBinaryPath")
+        elif context.scene.fast64.sm64.export_type == "O2R":
+            raise PluginError("[O2R] DList Panel Export - Not implemented for now.")
         else:
             prop_split(col, context.scene, "DLExportStart", "Start Address")
             prop_split(col, context.scene, "DLExportEnd", "End Address")

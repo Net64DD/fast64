@@ -2877,6 +2877,8 @@ class SM64_ExportGeolayoutObject(ObjectDataExporter):
                     bpy.path.abspath(bpy.context.scene.geoInsertableBinaryPath),
                 )
                 self.report({"INFO"}, "Success! Data at " + context.scene.geoInsertableBinaryPath)
+            elif context.scene.fast64.sm64.export_type == "O2R":
+                raise PluginError("[O2R] GeoLayout Object Export - Not implemented for now.")
             else:
                 tempROM = tempName(context.scene.fast64.sm64.output_rom)
                 export_rom_checks(bpy.path.abspath(context.scene.fast64.sm64.export_rom))
@@ -3077,6 +3079,8 @@ class SM64_ExportGeolayoutArmature(bpy.types.Operator):
                     None,
                 )
                 self.report({"INFO"}, "Success! Data at " + context.scene.geoInsertableBinaryPath)
+            elif context.scene.fast64.sm64.export_type == "O2R":
+                raise PluginError("[O2R] GeoLayout Armature Export - Not implemented for now.")
             else:
                 tempROM = tempName(context.scene.fast64.sm64.output_rom)
                 export_rom_checks(bpy.path.abspath(context.scene.fast64.sm64.export_rom))
@@ -3193,6 +3197,8 @@ class SM64_ExportGeolayoutPanel(SM64_Panel):
         propsGeoE = col.operator(SM64_ExportGeolayoutObject.bl_idname)
         if context.scene.fast64.sm64.export_type == "Insertable Binary":
             col.prop(context.scene, "geoInsertableBinaryPath")
+        elif context.scene.fast64.sm64.export_type == "O2R":
+            raise PluginError("[O2R] GeoLayout Panel Export - Not implemented for now.")
         else:
             prop_split(col, context.scene, "geoExportStart", "Start Address")
             prop_split(col, context.scene, "geoExportEnd", "End Address")

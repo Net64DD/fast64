@@ -10,6 +10,7 @@ enum_export_type = [
     ("C", "C", "C"),
     ("Binary", "Binary", "Binary"),
     ("Insertable Binary", "Insertable Binary", "Insertable Binary"),
+    ("O2R", "O2R", "O2R"),
 ]
 
 enum_compression_formats = [
